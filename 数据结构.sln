@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyArray", "MyArray\MyArray.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "链表", "链表\链表.csproj", "{BB6784B4-2659-47AF-936A-8FCED13AB591}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "栈", "栈\栈.csproj", "{C8FCE83F-49BC-417C-97B5-2EBF37E5F9E6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{BB6784B4-2659-47AF-936A-8FCED13AB591}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BB6784B4-2659-47AF-936A-8FCED13AB591}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BB6784B4-2659-47AF-936A-8FCED13AB591}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C8FCE83F-49BC-417C-97B5-2EBF37E5F9E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8FCE83F-49BC-417C-97B5-2EBF37E5F9E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8FCE83F-49BC-417C-97B5-2EBF37E5F9E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8FCE83F-49BC-417C-97B5-2EBF37E5F9E6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

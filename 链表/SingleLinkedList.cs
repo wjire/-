@@ -9,9 +9,9 @@ namespace 链表
     /// </summary>
     public class SingleLinkedList<T> where T : IComparable<T>
     {
-        private readonly SingleLinkedListNode<T> head = new SingleLinkedListNode<T>();
+        public readonly SingleLinkedListNode<T> Head = new SingleLinkedListNode<T>();
 
-        public SingleLinkedListNode<T> First => head.Next;
+        public SingleLinkedListNode<T> First => Head.Next;
 
         public int Count { get; private set; }
 
@@ -23,7 +23,7 @@ namespace 链表
 
         public SingleLinkedList(IEnumerable<T> source)
         {
-            SingleLinkedListNode<T> temp = head;
+            SingleLinkedListNode<T> temp = Head;
             foreach (T item in source)
             {
                 SingleLinkedListNode<T> newNode = new SingleLinkedListNode<T> { Value = item };
@@ -40,7 +40,7 @@ namespace 链表
 
         public void AddLast(SingleLinkedListNode<T> newNode)
         {
-            SingleLinkedListNode<T> node = head;
+            SingleLinkedListNode<T> node = Head;
             while (node.Next != null)
             {
                 node = node.Next;
@@ -65,14 +65,43 @@ namespace 链表
         {
             if (First == null)
             {
-                head.Next = newNode;
+                Head.Next = newNode;
             }
             else
             {
                 newNode.Next = First;
-                head.Next = newNode;
+                Head.Next = newNode;
             }
             Count++;
+        }
+
+        public SingleLinkedListNode<T> Find(T value)
+        {
+            SingleLinkedListNode<T> node = First;
+            while (node != null)
+            {
+                if (node.Value.CompareTo(value) == 0)
+                {
+                    return node;
+                }
+                node = node.Next;
+            }
+            return null;
+        }
+
+
+        public void Remove(T value)
+        {
+            SingleLinkedListNode<T> node = Head;
+            while (node.Next != null)
+            {
+                if (node.Next.Value.CompareTo(value) == 0)
+                {
+                    node.Next = node.Next.Next;
+                    return;
+                }
+                node = node.Next;
+            }
         }
 
 
@@ -97,6 +126,138 @@ namespace 链表
             }
             return result;
         }
+
+
+        /// <summary>
+        /// 在知道长度的情况下，删除链表倒数第 n 个结点
+        /// </summary>
+        /// <param name="n"></param>
+        public void RemoveNodeFromEnd(int n)
+        {
+            if (n < 1 || n > Count)
+            {
+                throw new ArgumentException();
+            }
+
+            int asc = Count - n;
+            int index = 1;
+            SingleLinkedListNode<T> node = First;
+            while (index < asc)
+            {
+                node = node.Next;
+                index++;
+            }
+            node.Next = node.Next.Next;
+        }
+
+
+        /// <summary>
+        /// 在不知道长度的情况下，使用快慢指针删除链表倒数第 n 个结点
+        /// </summary>
+        /// <param name="n"></param>
+        public void RemoveNodeFromEndStartOnHead(int n)
+        {
+            if (n < 1)
+            {
+                throw new ArgumentException();
+            }
+
+            //SingleLinkedList<int> single = new SingleLinkedList<int>(new List<int> { 1, 2, 3, 4, 5, 6, 7 });
+            //SingleLinkedList<int> single = new SingleLinkedList<int>(new List<int> { 1, 2, 3, 4, 5, 6, 7, 8 });
+
+            /*
+             * 假设长度 h，倒数第 n 个 ，再走 h-n 步就到头了，等价于
+             * 正数第 n 个，再走 h-n 步就到尾了。
+             * 所以，快指针先走到第 n 个，然后和慢指针一起，一步一步走，当快指针走到尾时，慢指针指向的节点即为倒数第 n 个节点。
+             *
+             */
+            SingleLinkedListNode<T> fast = Head;
+            for (int i = 0; i < n; i++)
+            {
+                fast = fast.Next;
+            }
+            SingleLinkedListNode<T> slow = Head;
+            while (fast.Next != null)
+            {
+                slow = slow.Next;
+                fast = fast.Next;
+            }
+            slow.Next = slow.Next.Next;
+        }
+
+
+        /// <summary>
+        /// 在不知道长度的情况下，使用快慢指针删除链表倒数第 n 个结点
+        /// </summary>
+        /// <param name="n"></param>
+        public void RemoveNodeFromEndStartOnFirst(int n)
+        {
+            if (n < 1)
+            {
+                throw new ArgumentException();
+            }
+
+            //SingleLinkedList<int> single = new SingleLinkedList<int>(new List<int> { 1, 2, 3, 4, 5, 6, 7 });
+            //SingleLinkedList<int> single = new SingleLinkedList<int>(new List<int> { 1, 2, 3, 4, 5, 6, 7, 8 });
+
+            /*
+             * 假设长度 h，倒数第 n 个 ，再走 h-n 步就到头了，等价于
+             * 正数第 n 个，再走 h-n 步就到尾了。
+             * 所以，快指针先走到第 n 个，然后和慢指针一起，一步一步走，当快指针走到尾时，慢指针指向的节点即为倒数第 n 个节点。
+             *
+             */
+            SingleLinkedListNode<T> fast = First;
+            for (int i = 0; i < n; i++)
+            {
+                fast = fast.Next;
+            }
+
+            if (fast == null)
+            {
+                Head.Next = First.Next;
+                return;
+            }
+            SingleLinkedListNode<T> slow = First;
+            while (fast.Next != null)
+            {
+                slow = slow.Next;
+                fast = fast.Next;
+            }
+            slow.Next = slow.Next.Next;
+        }
+
+
+        /// <summary>
+        /// 找出中间节点,如果有两个， 返回第2个
+        /// </summary>
+        /// <returns></returns>
+        public SingleLinkedListNode<T> GetMidNode()
+        {
+            //SingleLinkedList<int> single = new SingleLinkedList<int>(new List<int> { 1, 2, 3, 4, 5, 6, 7 });
+            //SingleLinkedList<int> single = new SingleLinkedList<int>(new List<int> { 1, 2, 3, 4, 5, 6, 7, 8 });
+
+
+            //方法一，从哨兵开始
+            //SingleLinkedListNode<T> fast = Head;
+            //SingleLinkedListNode<T> slow = Head;
+            //while (fast.Next?.Next != null)
+            //{
+            //    slow = slow.Next;
+            //    fast = fast.Next?.Next;
+            //}
+            //return slow.Next;
+
+            //方法二，从第一个节点开始
+            SingleLinkedListNode<T> fast = First;
+            SingleLinkedListNode<T> slow = First;
+            while (fast?.Next != null)
+            {
+                slow = slow.Next;
+                fast = fast.Next?.Next;
+            }
+            return slow;
+        }
+
 
 
         public void Print()
