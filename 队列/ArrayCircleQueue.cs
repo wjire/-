@@ -40,8 +40,8 @@ namespace 队列
                 capacity = newCapacity;
                 items = newItems;
             }
-            items[tail % capacity] = item;
-            tail++;
+            items[tail] = item;
+            tail = (tail + 1) % capacity;
             count++;
         }
 
@@ -51,11 +51,10 @@ namespace 队列
             {
                 throw new Exception("the queue is empty");
             }
-            int index = head % capacity;
-            T item = items[index];
-            items[index] = default(T);
+            T item = items[head];
+            items[head] = default(T);
             count--;
-            head++;
+            head = (head + 1) % capacity;
             return item;
         }
     }
