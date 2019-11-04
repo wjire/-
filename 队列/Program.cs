@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 
 namespace 队列
 {
@@ -7,6 +8,8 @@ namespace 队列
         private static void Main(string[] args)
         {
             {
+                ConcurrentQueue<int> queue = new ConcurrentQueue<int>();
+                queue.Enqueue(1);
                 //ArrayQueue<int> queue = new ArrayQueue<int>();
                 //Console.WriteLine("capacity:" + queue.Capacity);
                 //Console.WriteLine("count:" + queue.Count);
