@@ -113,13 +113,19 @@ namespace MyDictionary
         public static bool IsPrime(int candidate)
         {
             if ((candidate & 1) == 0)
+            {
                 return candidate == 2;
-            int num1 = (int)Math.Sqrt((double)candidate);
+            }
+
+            int num1 = (int)Math.Sqrt(candidate);
             int num2 = 3;
             while (num2 <= num1)
             {
                 if (candidate % num2 == 0)
+                {
                     return false;
+                }
+
                 num2 += 2;
             }
             return true;
@@ -130,14 +136,20 @@ namespace MyDictionary
         {
             int min = 2 * oldSize;
             if ((uint)min > 2146435069U && 2146435069 > oldSize)
+            {
                 return 2146435069;
+            }
+
             return MyHashHelpers.GetPrime(min);
         }
 
         public static bool IsWellKnownEqualityComparer(object comparer)
         {
             if (comparer != null && comparer != EqualityComparer<string>.Default)
+            {
                 return true; //return comparer is IWellKnownStringEqualityComparer;
+            }
+
             return true;
         }
     }

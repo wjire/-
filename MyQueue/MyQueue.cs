@@ -4,14 +4,14 @@ namespace MyQueue
 {
     public class MyQueue<T>
     {
-        private static T[] _emptyArray = new T[0];
+        private static readonly T[] _emptyArray = new T[0];
         private T[] _array;
         private int _head;
         private int _tail;
         private int _size;
         private int _version;
         [NonSerialized]
-        private object _syncRoot;
+        private readonly object _syncRoot;
         private const int _MinimumGrow = 4;
         private const int _ShrinkThreshold = 32;
         private const int _GrowFactor = 200;
@@ -47,12 +47,12 @@ namespace MyQueue
             {
                 if (_head < _tail)
                 {
-                    Array.Copy((Array)_array, _head, (Array)objArray, 0, _size);
+                    Array.Copy(_array, _head, objArray, 0, _size);
                 }
                 else
                 {
-                    Array.Copy((Array)_array, _head, (Array)objArray, 0, _array.Length - _head);
-                    Array.Copy((Array)_array, 0, (Array)objArray, _array.Length - _head, _tail);
+                    Array.Copy(_array, _head, objArray, 0, _array.Length - _head);
+                    Array.Copy(_array, 0, objArray, _array.Length - _head, _tail);
                 }
             }
             _array = objArray;

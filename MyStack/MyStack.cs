@@ -27,7 +27,7 @@ namespace MyStack
 
         public T Pop()
         {
-            var data = _dataList[_index];
+            T data = _dataList[_index];
             _dataList.RemoveAt(_index);
             _index--;
             return data;

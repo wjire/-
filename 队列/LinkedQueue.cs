@@ -10,7 +10,7 @@ namespace 队列
     /// <typeparam name="T"></typeparam>
     public class LinkedQueue<T> where T : IComparable<T>
     {
-        private LinkedList<T> items = new LinkedList<T>();
+        private readonly LinkedList<T> items = new LinkedList<T>();
         public int Count => items.Count;
 
 

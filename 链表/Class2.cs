@@ -82,15 +82,15 @@ namespace 链表
         {
             ValidateNode(node);
             LinkedListNode<T> newNode = new LinkedListNode<T>(node.list, value);
-            this.InternalInsertNodeBefore(node.next, newNode);
+            InternalInsertNodeBefore(node.next, newNode);
             return newNode;
         }
 
-        public void AddAfter(LinkedListNode<T> node,LinkedListNode<T> newNode)
+        public void AddAfter(LinkedListNode<T> node, LinkedListNode<T> newNode)
         {
             ValidateNode(node);
             ValidateNewNode(newNode);
-            this.InternalInsertNodeBefore(node.next, newNode);
+            InternalInsertNodeBefore(node.next, newNode);
             newNode.list = this;
         }
 
@@ -183,10 +183,10 @@ namespace 链表
 
         public void Clear()
         {
-           LinkedListNode<T> linkedListNode1 = head;
+            LinkedListNode<T> linkedListNode1 = head;
             while (linkedListNode1 != null)
             {
-              LinkedListNode<T> linkedListNode2 = linkedListNode1;
+                LinkedListNode<T> linkedListNode2 = linkedListNode1;
                 linkedListNode1 = linkedListNode1.Next;
                 linkedListNode2.Invalidate();
             }
@@ -210,7 +210,7 @@ namespace 链表
 
 
 
-           LinkedListNode<T> linkedListNode = head;
+            LinkedListNode<T> linkedListNode = head;
             if (linkedListNode == null)
             {
                 return;
@@ -226,7 +226,7 @@ namespace 链表
 
         public LinkedListNode<T> Find(T value)
         {
-           LinkedListNode<T> linkedListNode = head;
+            LinkedListNode<T> linkedListNode = head;
             EqualityComparer<T> equalityComparer = EqualityComparer<T>.Default;
             if (linkedListNode != null)
             {
@@ -242,7 +242,7 @@ namespace 链表
                     }
                     return linkedListNode;
                 }
-                while ((object)linkedListNode.item != null)
+                while (linkedListNode.item != null)
                 {
                     linkedListNode = linkedListNode.next;
                     if (linkedListNode == head)
@@ -280,7 +280,7 @@ namespace 链表
                     }
                     return linkedListNode;
                 }
-                while ((object)linkedListNode.item != null)
+                while (linkedListNode.item != null)
                 {
                     linkedListNode = linkedListNode.prev;
                     if (linkedListNode == prev)
@@ -333,7 +333,7 @@ namespace 链表
         {
 
 
-            this.InternalRemoveNode(head.prev);
+            InternalRemoveNode(head.prev);
         }
 
         public virtual void GetObjectData(SerializationInfo info, StreamingContext context)
@@ -468,7 +468,7 @@ namespace 链表
 
             if (array.Length - index < Count)
             {
-              
+
             }
 
             T[] array1 = array as T[];
@@ -479,7 +479,7 @@ namespace 链表
             else
             {
                 object[] objArray = array as object[];
- 
+
 
                 链表.LinkedListNode<T> linkedListNode = head;
                 try
@@ -491,7 +491,7 @@ namespace 链表
 
                     do
                     {
-                        objArray[index++] = (object)linkedListNode.item;
+                        objArray[index++] = linkedListNode.item;
                         linkedListNode = linkedListNode.next;
                     }
                     while (linkedListNode != head);
@@ -509,9 +509,9 @@ namespace 链表
 
         public struct Enumerator : IEnumerator<T>, IDisposable, IEnumerator, ISerializable, IDeserializationCallback
         {
-            private 链表.LinkedList<T> _list;
+            private readonly 链表.LinkedList<T> _list;
             private 链表.LinkedListNode<T> _node;
-            private int _version;
+            private readonly int _version;
             private T _current;
             private int _index;
 

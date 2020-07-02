@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace 链表
+﻿namespace 链表
 {
     public sealed class LinkedListNode<T>
     {
@@ -13,20 +9,20 @@ namespace 链表
 
         public LinkedListNode(T value)
         {
-            this.item = value;
+            item = value;
         }
 
         internal LinkedListNode(LinkedList<T> list, T value)
         {
             this.list = list;
-            this.item = value;
+            item = value;
         }
 
         public LinkedList<T> List
         {
             get
             {
-                return this.list;
+                return list;
             }
         }
 
@@ -34,9 +30,12 @@ namespace 链表
         {
             get
             {
-                if (this.next != null && this.next != this.list.head)
-                    return this.next;
-                return (LinkedListNode<T>)null;
+                if (next != null && next != list.head)
+                {
+                    return next;
+                }
+
+                return null;
             }
         }
 
@@ -44,9 +43,12 @@ namespace 链表
         {
             get
             {
-                if (this.prev != null && this != this.list.head)
-                    return this.prev;
-                return (LinkedListNode<T>)null;
+                if (prev != null && this != list.head)
+                {
+                    return prev;
+                }
+
+                return null;
             }
         }
 
@@ -54,19 +56,19 @@ namespace 链表
         {
             get
             {
-                return this.item;
+                return item;
             }
             set
             {
-                this.item = value;
+                item = value;
             }
         }
 
         internal void Invalidate()
         {
-            this.list = (LinkedList<T>)null;
-            this.next = (LinkedListNode<T>)null;
-            this.prev = (LinkedListNode<T>)null;
+            list = null;
+            next = null;
+            prev = null;
         }
     }
 }

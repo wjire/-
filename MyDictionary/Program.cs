@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 
@@ -24,14 +23,16 @@ namespace MyDictionary
             //IEnumerable<int>
             //Queue<int> q = new Queue<int>();
 
-            HashSet<int> hs = new HashSet<int>();
-            hs.Add(1);
+            HashSet<int> hs = new HashSet<int>
+            {
+                1
+            };
             //SortedList<int>
             //SortedDictionary<int,int>
             //SortedSet<int>
 
             ConcurrentDictionary<int, int> dic = new ConcurrentDictionary<int, int>();
-            dic.TryGetValue(1, out var temp);
+            dic.TryGetValue(1, out int temp);
 
 
             Console.Read();

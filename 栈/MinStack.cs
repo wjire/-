@@ -42,7 +42,7 @@ namespace 栈
         {
             bool flag = stack.TryPeek(out int res);
             if (flag)
-            {   
+            {
                 return res;
             }
             return 0;

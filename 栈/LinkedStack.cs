@@ -20,7 +20,11 @@ namespace 栈
         public T Pop()
         {
             LinkedListNode<T> item = items.Last;
-            if (item == null) throw new Exception("the stack is empty");
+            if (item == null)
+            {
+                throw new Exception("the stack is empty");
+            }
+
             items.RemoveLast();
             return item.Value;
         }
