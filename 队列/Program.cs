@@ -10,6 +10,8 @@ namespace 队列
             ConcurrentQueue<int> q = new ConcurrentQueue<int>();
             q.Enqueue(1);
             {
+                ConcurrentQueue<int> queue = new ConcurrentQueue<int>();
+                queue.Enqueue(1);
                 //ArrayQueue<int> queue = new ArrayQueue<int>();
                 //Console.WriteLine("capacity:" + queue.Capacity);
                 //Console.WriteLine("count:" + queue.Count);
