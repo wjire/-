@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 
 namespace MyQueue
 {
@@ -31,6 +32,9 @@ namespace MyQueue
             Console.WriteLine(res);
             q.Enqueue(5);
             q.Enqueue(6);
+
+            ConcurrentQueue<int> q = new ConcurrentQueue<int>();
+            q.Enqueue(1);
 
             Console.ReadKey();
         }

@@ -69,9 +69,6 @@ namespace 栈
             }
 
             {
-                LeetCode682 code = new LeetCode682();
-                int res = code.CalPoints(new[] { "5", "2", "C", "D", "+" });
-                Console.WriteLine(res);
             }
 
             Console.ReadKey();
